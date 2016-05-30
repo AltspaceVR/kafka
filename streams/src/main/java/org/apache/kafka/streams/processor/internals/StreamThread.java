@@ -336,7 +336,6 @@ public class StreamThread extends Thread {
                 }
 
                 long endPoll = time.milliseconds();
-                sensors.pollTimeSensor.record(endPoll - startPoll);
             }
 
             totalNumBuffered = 0;
@@ -349,8 +348,6 @@ public class StreamThread extends Thread {
 
                     totalNumBuffered += task.process();
                     requiresPoll = requiresPoll || task.requiresPoll();
-
-                    sensors.processTimeSensor.record(time.milliseconds() - startProcess);
 
                     maybePunctuate(task);
 
@@ -757,7 +754,6 @@ public class StreamThread extends Thread {
 
         @Override
         public void recordLatency(Sensor sensor, long startNs, long endNs) {
-            sensor.record((endNs - startNs) / 1000000, endNs);
         }
 
         @Override
