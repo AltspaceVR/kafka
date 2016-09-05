@@ -479,8 +479,6 @@ public class StreamThread extends Thread {
             log.error("Failed to commit " + task.getClass().getSimpleName() + " #" + task.id() + " in thread [" + this.getName() + "]: ", e);
             throw e;
         }
-
-        sensors.commitTimeSensor.record(time.milliseconds() - now);
     }
 
     /**
